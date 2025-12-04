@@ -1,0 +1,3834 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "设备管理系统",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/users/users": {
+      "post": {
+        "tags": [
+          "用户管理",
+          "用户管理"
+        ],
+        "summary": "Endpoint",
+        "description": "Create a new User row in the database.",
+        "operationId": "endpoint_users_users_post",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "用户管理",
+          "用户管理"
+        ],
+        "summary": "Endpoint",
+        "description": "Read multiple User rows from the database.\n\n**Pagination Options:**\n- Use `page` & `itemsPerPage` for paginated results\n- Use `offset` & `limit` for specific ranges\n\n**Sorting:**\n- Use `sort` parameter to sort results by one or more fields\n- Format: `field1,-field2` (comma-separated, `-` prefix for descending)\n- Examples: `name` (ascending), `-age` (descending), `name,-age` (mixed)\n\n**Response Format:**\n- Returns paginated response when using page/itemsPerPage\n- Returns simple list response when using offset/limit",
+        "operationId": "endpoint_users_users_get",
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Offset for unpaginated queries",
+              "title": "Offset"
+            },
+            "description": "Offset for unpaginated queries"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Limit for unpaginated queries",
+              "title": "Limit"
+            },
+            "description": "Limit for unpaginated queries"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Page number",
+              "title": "Page"
+            },
+            "description": "Page number"
+          },
+          {
+            "name": "itemsPerPage",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Number of items per page",
+              "title": "Itemsperpage"
+            },
+            "description": "Number of items per page"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Sort results by one or more fields. Format: 'field1,-field2' where '-' prefix indicates descending order. Example: 'name' (ascending), '-age' (descending), 'name,-age' (name ascending, then age descending).",
+              "title": "Sort"
+            },
+            "description": "Sort results by one or more fields. Format: 'field1,-field2' where '-' prefix indicates descending order. Example: 'name' (ascending), '-age' (descending), 'name,-age' (name ascending, then age descending)."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/fastcrud__paginated__schemas__DynamicPaginatedResponse__1"
+                    },
+                    {
+                      "$ref": "#/components/schemas/fastcrud__paginated__schemas__DynamicListResponse__1"
+                    }
+                  ],
+                  "title": "Response Endpoint Users Users Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/users/{id}": {
+      "get": {
+        "tags": [
+          "用户管理",
+          "用户管理"
+        ],
+        "summary": "Endpoint",
+        "description": "Read a single User row from the database by its primary keys: ['id'].",
+        "operationId": "endpoint_users_users__id__get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserRead"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "用户管理",
+          "用户管理"
+        ],
+        "summary": "Endpoint",
+        "description": "Update an existing User row in the database by its primary keys: ['id'].",
+        "operationId": "endpoint_users_users__id__patch",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "用户管理",
+          "用户管理"
+        ],
+        "summary": "Endpoint",
+        "description": "Delete a User row from the database by its primary keys: ['id'].",
+        "operationId": "endpoint_users_users__id__delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/roles/roles": {
+      "post": {
+        "tags": [
+          "角色管理",
+          "角色管理"
+        ],
+        "summary": "Endpoint",
+        "description": "Create a new Role row in the database.",
+        "operationId": "endpoint_roles_roles_post",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoleCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "角色管理",
+          "角色管理"
+        ],
+        "summary": "Endpoint",
+        "description": "Read multiple Role rows from the database.\n\n**Pagination Options:**\n- Use `page` & `itemsPerPage` for paginated results\n- Use `offset` & `limit` for specific ranges\n\n**Sorting:**\n- Use `sort` parameter to sort results by one or more fields\n- Format: `field1,-field2` (comma-separated, `-` prefix for descending)\n- Examples: `name` (ascending), `-age` (descending), `name,-age` (mixed)\n\n**Response Format:**\n- Returns paginated response when using page/itemsPerPage\n- Returns simple list response when using offset/limit",
+        "operationId": "endpoint_roles_roles_get",
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Offset for unpaginated queries",
+              "title": "Offset"
+            },
+            "description": "Offset for unpaginated queries"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Limit for unpaginated queries",
+              "title": "Limit"
+            },
+            "description": "Limit for unpaginated queries"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Page number",
+              "title": "Page"
+            },
+            "description": "Page number"
+          },
+          {
+            "name": "itemsPerPage",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Number of items per page",
+              "title": "Itemsperpage"
+            },
+            "description": "Number of items per page"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Sort results by one or more fields. Format: 'field1,-field2' where '-' prefix indicates descending order. Example: 'name' (ascending), '-age' (descending), 'name,-age' (name ascending, then age descending).",
+              "title": "Sort"
+            },
+            "description": "Sort results by one or more fields. Format: 'field1,-field2' where '-' prefix indicates descending order. Example: 'name' (ascending), '-age' (descending), 'name,-age' (name ascending, then age descending)."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/fastcrud__paginated__schemas__DynamicPaginatedResponse"
+                    },
+                    {
+                      "$ref": "#/components/schemas/fastcrud__paginated__schemas__DynamicListResponse"
+                    }
+                  ],
+                  "title": "Response Endpoint Roles Roles Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/roles/roles/{id}": {
+      "get": {
+        "tags": [
+          "角色管理",
+          "角色管理"
+        ],
+        "summary": "Endpoint",
+        "description": "Read a single Role row from the database by its primary keys: ['id'].",
+        "operationId": "endpoint_roles_roles__id__get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoleRead"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "角色管理",
+          "角色管理"
+        ],
+        "summary": "Endpoint",
+        "description": "Update an existing Role row in the database by its primary keys: ['id'].",
+        "operationId": "endpoint_roles_roles__id__patch",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoleUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "角色管理",
+          "角色管理"
+        ],
+        "summary": "Endpoint",
+        "description": "Delete a Role row from the database by its primary keys: ['id'].",
+        "operationId": "endpoint_roles_roles__id__delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/equipment/equipment": {
+      "post": {
+        "tags": [
+          "设备管理",
+          "设备管理"
+        ],
+        "summary": "Endpoint",
+        "description": "Create a new Equipment row in the database.",
+        "operationId": "endpoint_equipment_equipment_post",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EquipmentCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "设备管理",
+          "设备管理"
+        ],
+        "summary": "Endpoint",
+        "description": "Read multiple Equipment rows from the database.\n\n**Pagination Options:**\n- Use `page` & `itemsPerPage` for paginated results\n- Use `offset` & `limit` for specific ranges\n\n**Sorting:**\n- Use `sort` parameter to sort results by one or more fields\n- Format: `field1,-field2` (comma-separated, `-` prefix for descending)\n- Examples: `name` (ascending), `-age` (descending), `name,-age` (mixed)\n\n**Response Format:**\n- Returns paginated response when using page/itemsPerPage\n- Returns simple list response when using offset/limit",
+        "operationId": "endpoint_equipment_equipment_get",
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Offset for unpaginated queries",
+              "title": "Offset"
+            },
+            "description": "Offset for unpaginated queries"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Limit for unpaginated queries",
+              "title": "Limit"
+            },
+            "description": "Limit for unpaginated queries"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Page number",
+              "title": "Page"
+            },
+            "description": "Page number"
+          },
+          {
+            "name": "itemsPerPage",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Number of items per page",
+              "title": "Itemsperpage"
+            },
+            "description": "Number of items per page"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Sort results by one or more fields. Format: 'field1,-field2' where '-' prefix indicates descending order. Example: 'name' (ascending), '-age' (descending), 'name,-age' (name ascending, then age descending).",
+              "title": "Sort"
+            },
+            "description": "Sort results by one or more fields. Format: 'field1,-field2' where '-' prefix indicates descending order. Example: 'name' (ascending), '-age' (descending), 'name,-age' (name ascending, then age descending)."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/fastcrud__paginated__schemas__DynamicPaginatedResponse__3"
+                    },
+                    {
+                      "$ref": "#/components/schemas/fastcrud__paginated__schemas__DynamicListResponse__3"
+                    }
+                  ],
+                  "title": "Response Endpoint Equipment Equipment Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/equipment/equipment/{id}": {
+      "get": {
+        "tags": [
+          "设备管理",
+          "设备管理"
+        ],
+        "summary": "Endpoint",
+        "description": "Read a single Equipment row from the database by its primary keys: ['id'].",
+        "operationId": "endpoint_equipment_equipment__id__get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EquipmentRead"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "设备管理",
+          "设备管理"
+        ],
+        "summary": "Endpoint",
+        "description": "Update an existing Equipment row in the database by its primary keys: ['id'].",
+        "operationId": "endpoint_equipment_equipment__id__patch",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EquipmentUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "设备管理",
+          "设备管理"
+        ],
+        "summary": "Endpoint",
+        "description": "Delete a Equipment row from the database by its primary keys: ['id'].",
+        "operationId": "endpoint_equipment_equipment__id__delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/borrow-records/borrow-records": {
+      "post": {
+        "tags": [
+          "借用记录",
+          "借用记录"
+        ],
+        "summary": "Endpoint",
+        "description": "Create a new BorrowRecord row in the database.",
+        "operationId": "endpoint_borrow_records_borrow_records_post",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BorrowRecordCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "借用记录",
+          "借用记录"
+        ],
+        "summary": "Endpoint",
+        "description": "Read multiple BorrowRecord rows from the database.\n\n**Pagination Options:**\n- Use `page` & `itemsPerPage` for paginated results\n- Use `offset` & `limit` for specific ranges\n\n**Sorting:**\n- Use `sort` parameter to sort results by one or more fields\n- Format: `field1,-field2` (comma-separated, `-` prefix for descending)\n- Examples: `name` (ascending), `-age` (descending), `name,-age` (mixed)\n\n**Response Format:**\n- Returns paginated response when using page/itemsPerPage\n- Returns simple list response when using offset/limit",
+        "operationId": "endpoint_borrow_records_borrow_records_get",
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Offset for unpaginated queries",
+              "title": "Offset"
+            },
+            "description": "Offset for unpaginated queries"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Limit for unpaginated queries",
+              "title": "Limit"
+            },
+            "description": "Limit for unpaginated queries"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Page number",
+              "title": "Page"
+            },
+            "description": "Page number"
+          },
+          {
+            "name": "itemsPerPage",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Number of items per page",
+              "title": "Itemsperpage"
+            },
+            "description": "Number of items per page"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Sort results by one or more fields. Format: 'field1,-field2' where '-' prefix indicates descending order. Example: 'name' (ascending), '-age' (descending), 'name,-age' (name ascending, then age descending).",
+              "title": "Sort"
+            },
+            "description": "Sort results by one or more fields. Format: 'field1,-field2' where '-' prefix indicates descending order. Example: 'name' (ascending), '-age' (descending), 'name,-age' (name ascending, then age descending)."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/fastcrud__paginated__schemas__DynamicPaginatedResponse__4"
+                    },
+                    {
+                      "$ref": "#/components/schemas/fastcrud__paginated__schemas__DynamicListResponse__4"
+                    }
+                  ],
+                  "title": "Response Endpoint Borrow Records Borrow Records Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/borrow-records/borrow-records/{id}": {
+      "get": {
+        "tags": [
+          "借用记录",
+          "借用记录"
+        ],
+        "summary": "Endpoint",
+        "description": "Read a single BorrowRecord row from the database by its primary keys: ['id'].",
+        "operationId": "endpoint_borrow_records_borrow_records__id__get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BorrowRecordRead"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "借用记录",
+          "借用记录"
+        ],
+        "summary": "Endpoint",
+        "description": "Update an existing BorrowRecord row in the database by its primary keys: ['id'].",
+        "operationId": "endpoint_borrow_records_borrow_records__id__patch",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BorrowRecordUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "借用记录",
+          "借用记录"
+        ],
+        "summary": "Endpoint",
+        "description": "Delete a BorrowRecord row from the database by its primary keys: ['id'].",
+        "operationId": "endpoint_borrow_records_borrow_records__id__delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/alerts/alerts": {
+      "post": {
+        "tags": [
+          "设备警报",
+          "设备警报"
+        ],
+        "summary": "Endpoint",
+        "description": "Create a new EquipmentAlert row in the database.",
+        "operationId": "endpoint_alerts_alerts_post",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EquipmentAlertCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "设备警报",
+          "设备警报"
+        ],
+        "summary": "Endpoint",
+        "description": "Read multiple EquipmentAlert rows from the database.\n\n**Pagination Options:**\n- Use `page` & `itemsPerPage` for paginated results\n- Use `offset` & `limit` for specific ranges\n\n**Sorting:**\n- Use `sort` parameter to sort results by one or more fields\n- Format: `field1,-field2` (comma-separated, `-` prefix for descending)\n- Examples: `name` (ascending), `-age` (descending), `name,-age` (mixed)\n\n**Response Format:**\n- Returns paginated response when using page/itemsPerPage\n- Returns simple list response when using offset/limit",
+        "operationId": "endpoint_alerts_alerts_get",
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Offset for unpaginated queries",
+              "title": "Offset"
+            },
+            "description": "Offset for unpaginated queries"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Limit for unpaginated queries",
+              "title": "Limit"
+            },
+            "description": "Limit for unpaginated queries"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Page number",
+              "title": "Page"
+            },
+            "description": "Page number"
+          },
+          {
+            "name": "itemsPerPage",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Number of items per page",
+              "title": "Itemsperpage"
+            },
+            "description": "Number of items per page"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Sort results by one or more fields. Format: 'field1,-field2' where '-' prefix indicates descending order. Example: 'name' (ascending), '-age' (descending), 'name,-age' (name ascending, then age descending).",
+              "title": "Sort"
+            },
+            "description": "Sort results by one or more fields. Format: 'field1,-field2' where '-' prefix indicates descending order. Example: 'name' (ascending), '-age' (descending), 'name,-age' (name ascending, then age descending)."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/fastcrud__paginated__schemas__DynamicPaginatedResponse__5"
+                    },
+                    {
+                      "$ref": "#/components/schemas/fastcrud__paginated__schemas__DynamicListResponse__5"
+                    }
+                  ],
+                  "title": "Response Endpoint Alerts Alerts Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/alerts/alerts/{id}": {
+      "get": {
+        "tags": [
+          "设备警报",
+          "设备警报"
+        ],
+        "summary": "Endpoint",
+        "description": "Read a single EquipmentAlert row from the database by its primary keys: ['id'].",
+        "operationId": "endpoint_alerts_alerts__id__get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EquipmentAlertRead"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "设备警报",
+          "设备警报"
+        ],
+        "summary": "Endpoint",
+        "description": "Update an existing EquipmentAlert row in the database by its primary keys: ['id'].",
+        "operationId": "endpoint_alerts_alerts__id__patch",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EquipmentAlertUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "设备警报",
+          "设备警报"
+        ],
+        "summary": "Endpoint",
+        "description": "Delete a EquipmentAlert row from the database by its primary keys: ['id'].",
+        "operationId": "endpoint_alerts_alerts__id__delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sensor-data/sensor-data": {
+      "post": {
+        "tags": [
+          "传感器数据",
+          "传感器数据"
+        ],
+        "summary": "Endpoint",
+        "description": "Create a new SensorData row in the database.",
+        "operationId": "endpoint_sensor_data_sensor_data_post",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SensorDataCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "传感器数据",
+          "传感器数据"
+        ],
+        "summary": "Endpoint",
+        "description": "Read multiple SensorData rows from the database.\n\n**Pagination Options:**\n- Use `page` & `itemsPerPage` for paginated results\n- Use `offset` & `limit` for specific ranges\n\n**Sorting:**\n- Use `sort` parameter to sort results by one or more fields\n- Format: `field1,-field2` (comma-separated, `-` prefix for descending)\n- Examples: `name` (ascending), `-age` (descending), `name,-age` (mixed)\n\n**Response Format:**\n- Returns paginated response when using page/itemsPerPage\n- Returns simple list response when using offset/limit",
+        "operationId": "endpoint_sensor_data_sensor_data_get",
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Offset for unpaginated queries",
+              "title": "Offset"
+            },
+            "description": "Offset for unpaginated queries"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Limit for unpaginated queries",
+              "title": "Limit"
+            },
+            "description": "Limit for unpaginated queries"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Page number",
+              "title": "Page"
+            },
+            "description": "Page number"
+          },
+          {
+            "name": "itemsPerPage",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Number of items per page",
+              "title": "Itemsperpage"
+            },
+            "description": "Number of items per page"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Sort results by one or more fields. Format: 'field1,-field2' where '-' prefix indicates descending order. Example: 'name' (ascending), '-age' (descending), 'name,-age' (name ascending, then age descending).",
+              "title": "Sort"
+            },
+            "description": "Sort results by one or more fields. Format: 'field1,-field2' where '-' prefix indicates descending order. Example: 'name' (ascending), '-age' (descending), 'name,-age' (name ascending, then age descending)."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/fastcrud__paginated__schemas__DynamicPaginatedResponse__6"
+                    },
+                    {
+                      "$ref": "#/components/schemas/fastcrud__paginated__schemas__DynamicListResponse__6"
+                    }
+                  ],
+                  "title": "Response Endpoint Sensor Data Sensor Data Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sensor-data/sensor-data/{id}": {
+      "get": {
+        "tags": [
+          "传感器数据",
+          "传感器数据"
+        ],
+        "summary": "Endpoint",
+        "description": "Read a single SensorData row from the database by its primary keys: ['id'].",
+        "operationId": "endpoint_sensor_data_sensor_data__id__get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SensorDataRead"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "传感器数据",
+          "传感器数据"
+        ],
+        "summary": "Endpoint",
+        "description": "Update an existing SensorData row in the database by its primary keys: ['id'].",
+        "operationId": "endpoint_sensor_data_sensor_data__id__patch",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SensorDataUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "传感器数据",
+          "传感器数据"
+        ],
+        "summary": "Endpoint",
+        "description": "Delete a SensorData row from the database by its primary keys: ['id'].",
+        "operationId": "endpoint_sensor_data_sensor_data__id__delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dashboard/latest-sensor-data": {
+      "get": {
+        "tags": [
+          "仪表板"
+        ],
+        "summary": "Get Latest Sensor Data",
+        "description": "获取最近的传感器数据用于可视化展示",
+        "operationId": "get_latest_sensor_data_dashboard_latest_sensor_data_get",
+        "parameters": [
+          {
+            "name": "hours",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 24,
+              "title": "Hours"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SensorDataRead"
+                  },
+                  "title": "Response Get Latest Sensor Data Dashboard Latest Sensor Data Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dashboard/equipment-status": {
+      "get": {
+        "tags": [
+          "仪表板"
+        ],
+        "summary": "Get Equipment Status",
+        "description": "获取所有设备的当前状态",
+        "operationId": "get_equipment_status_dashboard_equipment_status_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/EquipmentRead"
+                  },
+                  "type": "array",
+                  "title": "Response Get Equipment Status Dashboard Equipment Status Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dashboard/sensor-data-by-type": {
+      "get": {
+        "tags": [
+          "仪表板"
+        ],
+        "summary": "Get Sensor Data By Type",
+        "description": "根据传感器类型获取数据",
+        "operationId": "get_sensor_data_by_type_dashboard_sensor_data_by_type_get",
+        "parameters": [
+          {
+            "name": "sensor_type",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Sensor Type"
+            }
+          },
+          {
+            "name": "hours",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 24,
+              "title": "Hours"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SensorDataRead"
+                  },
+                  "title": "Response Get Sensor Data By Type Dashboard Sensor Data By Type Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/analytics/equipment-usage": {
+      "get": {
+        "tags": [
+          "数据分析"
+        ],
+        "summary": "Get Equipment Usage Statistics",
+        "description": "获取设备使用统计（按借用次数）",
+        "operationId": "get_equipment_usage_statistics_analytics_equipment_usage_get",
+        "parameters": [
+          {
+            "name": "days",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 30,
+              "title": "Days"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/analytics/user-ranking": {
+      "get": {
+        "tags": [
+          "数据分析"
+        ],
+        "summary": "Get User Borrow Ranking",
+        "description": "获取用户借用排行榜",
+        "operationId": "get_user_borrow_ranking_analytics_user_ranking_get",
+        "parameters": [
+          {
+            "name": "days",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 30,
+              "title": "Days"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/analytics/equipment-alerts": {
+      "get": {
+        "tags": [
+          "数据分析"
+        ],
+        "summary": "Get Equipment Alert Statistics",
+        "description": "获取设备报警统计",
+        "operationId": "get_equipment_alert_statistics_analytics_equipment_alerts_get",
+        "parameters": [
+          {
+            "name": "days",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 30,
+              "title": "Days"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/analytics/sensor-trends": {
+      "get": {
+        "tags": [
+          "数据分析"
+        ],
+        "summary": "Get Sensor Trends",
+        "description": "获取传感器数据趋势",
+        "operationId": "get_sensor_trends_analytics_sensor_trends_get",
+        "parameters": [
+          {
+            "name": "sensor_type",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Sensor Type"
+            }
+          },
+          {
+            "name": "hours",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 24,
+              "title": "Hours"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/analytics/dashboard-summary": {
+      "get": {
+        "tags": [
+          "数据分析"
+        ],
+        "summary": "Get Dashboard Summary",
+        "description": "获取仪表板摘要信息",
+        "operationId": "get_dashboard_summary_analytics_dashboard_summary_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "summary": "Root",
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BorrowRecordCreate": {
+        "properties": {
+          "user_id": {
+            "type": "integer",
+            "title": "User Id"
+          },
+          "equipment_id": {
+            "type": "integer",
+            "title": "Equipment Id"
+          },
+          "borrow_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Borrow Time"
+          },
+          "expected_return_time": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Return Time"
+          },
+          "actual_return_time": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Actual Return Time"
+          },
+          "status": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Status",
+            "default": "borrowed"
+          },
+          "purpose": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Purpose"
+          },
+          "remarks": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Remarks"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "equipment_id"
+        ],
+        "title": "BorrowRecordCreate"
+      },
+      "BorrowRecordRead": {
+        "properties": {
+          "user_id": {
+            "type": "integer",
+            "title": "User Id"
+          },
+          "equipment_id": {
+            "type": "integer",
+            "title": "Equipment Id"
+          },
+          "borrow_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Borrow Time"
+          },
+          "expected_return_time": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Return Time"
+          },
+          "actual_return_time": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Actual Return Time"
+          },
+          "status": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Status",
+            "default": "borrowed"
+          },
+          "purpose": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Purpose"
+          },
+          "remarks": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Remarks"
+          },
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "equipment_id",
+          "id",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "BorrowRecordRead"
+      },
+      "BorrowRecordUpdate": {
+        "properties": {
+          "user_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "User Id"
+          },
+          "equipment_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Equipment Id"
+          },
+          "borrow_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Borrow Time"
+          },
+          "expected_return_time": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Return Time"
+          },
+          "actual_return_time": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Actual Return Time"
+          },
+          "status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Status"
+          },
+          "purpose": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Purpose"
+          },
+          "remarks": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Remarks"
+          }
+        },
+        "type": "object",
+        "title": "BorrowRecordUpdate"
+      },
+      "EquipmentAlertCreate": {
+        "properties": {
+          "equipment_id": {
+            "type": "integer",
+            "title": "Equipment Id"
+          },
+          "alert_type": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Alert Type"
+          },
+          "alert_level": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Alert Level"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 500,
+            "title": "Description"
+          },
+          "resolved": {
+            "type": "boolean",
+            "title": "Resolved",
+            "default": false
+          },
+          "resolved_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resolved At"
+          },
+          "resolved_by": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resolved By"
+          }
+        },
+        "type": "object",
+        "required": [
+          "equipment_id",
+          "alert_type",
+          "alert_level",
+          "description"
+        ],
+        "title": "EquipmentAlertCreate"
+      },
+      "EquipmentAlertRead": {
+        "properties": {
+          "equipment_id": {
+            "type": "integer",
+            "title": "Equipment Id"
+          },
+          "alert_type": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Alert Type"
+          },
+          "alert_level": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Alert Level"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 500,
+            "title": "Description"
+          },
+          "resolved": {
+            "type": "boolean",
+            "title": "Resolved",
+            "default": false
+          },
+          "resolved_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resolved At"
+          },
+          "resolved_by": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resolved By"
+          },
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "equipment_id",
+          "alert_type",
+          "alert_level",
+          "description",
+          "id",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "EquipmentAlertRead"
+      },
+      "EquipmentAlertUpdate": {
+        "properties": {
+          "equipment_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Equipment Id"
+          },
+          "alert_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Alert Type"
+          },
+          "alert_level": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Alert Level"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 500,
+            "title": "Description"
+          },
+          "resolved": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resolved"
+          },
+          "resolved_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resolved At"
+          },
+          "resolved_by": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resolved By"
+          }
+        },
+        "type": "object",
+        "required": [
+          "alert_level",
+          "description"
+        ],
+        "title": "EquipmentAlertUpdate"
+      },
+      "EquipmentCreate": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 100,
+            "title": "Name"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "category": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Category"
+          },
+          "serial_number": {
+            "type": "string",
+            "maxLength": 100,
+            "title": "Serial Number"
+          },
+          "status": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Status",
+            "default": "available"
+          },
+          "location": {
+            "type": "string",
+            "maxLength": 100,
+            "title": "Location"
+          },
+          "purchase_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Purchase Date"
+          },
+          "warranty_expiry": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Warranty Expiry"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "category",
+          "serial_number",
+          "location"
+        ],
+        "title": "EquipmentCreate"
+      },
+      "EquipmentRead": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 100,
+            "title": "Name"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "category": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Category"
+          },
+          "serial_number": {
+            "type": "string",
+            "maxLength": 100,
+            "title": "Serial Number"
+          },
+          "status": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Status",
+            "default": "available"
+          },
+          "location": {
+            "type": "string",
+            "maxLength": 100,
+            "title": "Location"
+          },
+          "purchase_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Purchase Date"
+          },
+          "warranty_expiry": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Warranty Expiry"
+          },
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "category",
+          "serial_number",
+          "location",
+          "id",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "EquipmentRead"
+      },
+      "EquipmentUpdate": {
+        "properties": {
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "category": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Category"
+          },
+          "serial_number": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Serial Number"
+          },
+          "status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Status"
+          },
+          "location": {
+            "type": "string",
+            "maxLength": 100,
+            "title": "Location"
+          },
+          "purchase_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Purchase Date"
+          },
+          "warranty_expiry": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Warranty Expiry"
+          }
+        },
+        "type": "object",
+        "required": [
+          "category",
+          "location"
+        ],
+        "title": "EquipmentUpdate"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "RoleCreate": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Name"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "RoleCreate"
+      },
+      "RoleRead": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Name"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "id",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "RoleRead"
+      },
+      "RoleUpdate": {
+        "properties": {
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          }
+        },
+        "type": "object",
+        "title": "RoleUpdate"
+      },
+      "SensorDataCreate": {
+        "properties": {
+          "equipment_id": {
+            "type": "integer",
+            "title": "Equipment Id"
+          },
+          "sensor_type": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Sensor Type"
+          },
+          "value": {
+            "type": "number",
+            "title": "Value"
+          },
+          "unit": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Unit"
+          }
+        },
+        "type": "object",
+        "required": [
+          "equipment_id",
+          "sensor_type",
+          "value",
+          "unit"
+        ],
+        "title": "SensorDataCreate"
+      },
+      "SensorDataRead": {
+        "properties": {
+          "equipment_id": {
+            "type": "integer",
+            "title": "Equipment Id"
+          },
+          "sensor_type": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Sensor Type"
+          },
+          "value": {
+            "type": "number",
+            "title": "Value"
+          },
+          "unit": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Unit"
+          },
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "recorded_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Recorded At"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "equipment_id",
+          "sensor_type",
+          "value",
+          "unit",
+          "id",
+          "recorded_at",
+          "created_at"
+        ],
+        "title": "SensorDataRead"
+      },
+      "SensorDataUpdate": {
+        "properties": {
+          "equipment_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Equipment Id"
+          },
+          "sensor_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sensor Type"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Value"
+          },
+          "unit": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Unit"
+          }
+        },
+        "type": "object",
+        "required": [
+          "unit"
+        ],
+        "title": "SensorDataUpdate"
+      },
+      "UserCreate": {
+        "properties": {
+          "username": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Username"
+          },
+          "email": {
+            "type": "string",
+            "maxLength": 100,
+            "title": "Email"
+          },
+          "full_name": {
+            "type": "string",
+            "maxLength": 100,
+            "title": "Full Name"
+          },
+          "student_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 50
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Student Id"
+          },
+          "rfid_card": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 50
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rfid Card"
+          },
+          "is_active": {
+            "type": "boolean",
+            "title": "Is Active",
+            "default": true
+          },
+          "is_superuser": {
+            "type": "boolean",
+            "title": "Is Superuser",
+            "default": false
+          },
+          "password": {
+            "type": "string",
+            "title": "Password"
+          }
+        },
+        "type": "object",
+        "required": [
+          "username",
+          "email",
+          "full_name",
+          "password"
+        ],
+        "title": "UserCreate"
+      },
+      "UserRead": {
+        "properties": {
+          "username": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Username"
+          },
+          "email": {
+            "type": "string",
+            "maxLength": 100,
+            "title": "Email"
+          },
+          "full_name": {
+            "type": "string",
+            "maxLength": 100,
+            "title": "Full Name"
+          },
+          "student_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 50
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Student Id"
+          },
+          "rfid_card": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 50
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rfid Card"
+          },
+          "is_active": {
+            "type": "boolean",
+            "title": "Is Active",
+            "default": true
+          },
+          "is_superuser": {
+            "type": "boolean",
+            "title": "Is Superuser",
+            "default": false
+          },
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "username",
+          "email",
+          "full_name",
+          "id",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "UserRead"
+      },
+      "UserUpdate": {
+        "properties": {
+          "username": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Username"
+          },
+          "email": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Email"
+          },
+          "full_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Full Name"
+          },
+          "student_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 50
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Student Id"
+          },
+          "rfid_card": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 50
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rfid Card"
+          },
+          "is_active": {
+            "type": "boolean",
+            "title": "Is Active",
+            "default": true
+          },
+          "is_superuser": {
+            "type": "boolean",
+            "title": "Is Superuser",
+            "default": false
+          },
+          "password": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Password"
+          }
+        },
+        "type": "object",
+        "title": "UserUpdate"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "fastcrud__paginated__schemas__DynamicListResponse": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/RoleRead"
+            },
+            "type": "array",
+            "title": "Data"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "title": "DynamicListResponse"
+      },
+      "fastcrud__paginated__schemas__DynamicListResponse__1": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/UserRead"
+            },
+            "type": "array",
+            "title": "Data"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "title": "DynamicListResponse"
+      },
+      "fastcrud__paginated__schemas__DynamicListResponse__3": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/EquipmentRead"
+            },
+            "type": "array",
+            "title": "Data"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "title": "DynamicListResponse"
+      },
+      "fastcrud__paginated__schemas__DynamicListResponse__4": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/BorrowRecordRead"
+            },
+            "type": "array",
+            "title": "Data"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "title": "DynamicListResponse"
+      },
+      "fastcrud__paginated__schemas__DynamicListResponse__5": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/EquipmentAlertRead"
+            },
+            "type": "array",
+            "title": "Data"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "title": "DynamicListResponse"
+      },
+      "fastcrud__paginated__schemas__DynamicListResponse__6": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/SensorDataRead"
+            },
+            "type": "array",
+            "title": "Data"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "title": "DynamicListResponse"
+      },
+      "fastcrud__paginated__schemas__DynamicPaginatedResponse": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/RoleRead"
+            },
+            "type": "array",
+            "title": "Data"
+          },
+          "total_count": {
+            "type": "integer",
+            "title": "Total Count"
+          },
+          "has_more": {
+            "type": "boolean",
+            "title": "Has More"
+          },
+          "page": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Page"
+          },
+          "items_per_page": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Items Per Page"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "total_count",
+          "has_more"
+        ],
+        "title": "DynamicPaginatedResponse"
+      },
+      "fastcrud__paginated__schemas__DynamicPaginatedResponse__1": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/UserRead"
+            },
+            "type": "array",
+            "title": "Data"
+          },
+          "total_count": {
+            "type": "integer",
+            "title": "Total Count"
+          },
+          "has_more": {
+            "type": "boolean",
+            "title": "Has More"
+          },
+          "page": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Page"
+          },
+          "items_per_page": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Items Per Page"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "total_count",
+          "has_more"
+        ],
+        "title": "DynamicPaginatedResponse"
+      },
+      "fastcrud__paginated__schemas__DynamicPaginatedResponse__3": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/EquipmentRead"
+            },
+            "type": "array",
+            "title": "Data"
+          },
+          "total_count": {
+            "type": "integer",
+            "title": "Total Count"
+          },
+          "has_more": {
+            "type": "boolean",
+            "title": "Has More"
+          },
+          "page": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Page"
+          },
+          "items_per_page": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Items Per Page"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "total_count",
+          "has_more"
+        ],
+        "title": "DynamicPaginatedResponse"
+      },
+      "fastcrud__paginated__schemas__DynamicPaginatedResponse__4": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/BorrowRecordRead"
+            },
+            "type": "array",
+            "title": "Data"
+          },
+          "total_count": {
+            "type": "integer",
+            "title": "Total Count"
+          },
+          "has_more": {
+            "type": "boolean",
+            "title": "Has More"
+          },
+          "page": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Page"
+          },
+          "items_per_page": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Items Per Page"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "total_count",
+          "has_more"
+        ],
+        "title": "DynamicPaginatedResponse"
+      },
+      "fastcrud__paginated__schemas__DynamicPaginatedResponse__5": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/EquipmentAlertRead"
+            },
+            "type": "array",
+            "title": "Data"
+          },
+          "total_count": {
+            "type": "integer",
+            "title": "Total Count"
+          },
+          "has_more": {
+            "type": "boolean",
+            "title": "Has More"
+          },
+          "page": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Page"
+          },
+          "items_per_page": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Items Per Page"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "total_count",
+          "has_more"
+        ],
+        "title": "DynamicPaginatedResponse"
+      },
+      "fastcrud__paginated__schemas__DynamicPaginatedResponse__6": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/SensorDataRead"
+            },
+            "type": "array",
+            "title": "Data"
+          },
+          "total_count": {
+            "type": "integer",
+            "title": "Total Count"
+          },
+          "has_more": {
+            "type": "boolean",
+            "title": "Has More"
+          },
+          "page": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Page"
+          },
+          "items_per_page": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Items Per Page"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "total_count",
+          "has_more"
+        ],
+        "title": "DynamicPaginatedResponse"
+      }
+    }
+  }
+}
