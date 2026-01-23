@@ -84,7 +84,7 @@
 import { ref, reactive, onMounted, onBeforeUnmount } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import * as echarts from 'echarts'
-import { sensorDataApi, dashboardApi } from '@/api'
+import { sensorDataApi, dashboardApi } from '../api'
 
 // 表格数据
 const tableData = ref([])

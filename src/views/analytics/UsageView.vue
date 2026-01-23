@@ -61,7 +61,7 @@
 import { ref, reactive, onMounted, onBeforeUnmount } from 'vue'
 import { ElMessage } from 'element-plus'
 import * as echarts from 'echarts'
-import { analyticsApi } from '@/api'
+import { analyticsApi } from '../../api'
 
 // 图表相关
 const chart = ref(null)

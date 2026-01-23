@@ -159,7 +159,7 @@
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { equipmentApi } from '@/api'
+import { equipmentApi } from '../api'
 
 // 表格数据
 const tableData = ref([])

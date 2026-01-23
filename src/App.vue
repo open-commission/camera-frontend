@@ -3,19 +3,19 @@ import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <div id="app">
-    <el-container style="min-height: 100vh;">
-      <el-header style="background-color: #409eff; color: white; display: flex; align-items: center; justify-content: space-between;">
+  <div id="app" style="padding: 0; margin: 0; width: 100vw; height: 100vh; overflow: hidden;">
+    <el-container style="height: 100vh;">
+      <el-header style="background-color: #409eff; color: white; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; margin: 0;">
         <h2>设备管理系统</h2>
         <div>
           <el-button type="primary" link>登录</el-button>
           <el-button type="primary" link>注册</el-button>
         </div>
       </el-header>
-      
+
       <el-container>
-        <el-aside width="200px" style="background-color: #f5f5f5; min-height: calc(100vh - 60px);">
-          <el-menu router default-active="$route.path" class="el-menu-vertical-demo">
+        <el-aside width="200px" style="background-color: #f5f5f5; height: calc(100vh - 60px); padding: 0; margin: 0;">
+          <el-menu router default-active="$route.path" class="el-menu-vertical-demo" style="height: 100%; border-right: none;">
             <el-menu-item index="/">
               <el-icon><House /></el-icon>
               <span>首页</span>
@@ -56,8 +56,8 @@ import { RouterView } from 'vue-router'
             </el-sub-menu>
           </el-menu>
         </el-aside>
-        
-        <el-main>
+
+        <el-main style="padding: 0; margin: 0;">
           <RouterView />
         </el-main>
       </el-container>

@@ -168,7 +168,7 @@
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { borrowRecordApi } from '@/api'
+import { borrowRecordApi } from '../api'
 
 // 表格数据
 const tableData = ref([])

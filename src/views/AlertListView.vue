@@ -156,7 +156,7 @@
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { alertApi } from '@/api'
+import { alertApi } from '../api'
 
 // 表格数据
 const tableData = ref([])
